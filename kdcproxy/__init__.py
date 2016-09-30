@@ -133,9 +133,12 @@ class Application:
                         # log anything, and instead stop trying to
                         # send, since we won't be able to do anything
                         # more with it.
+                        sock.close()
                         wsocks.remove(sock)
                         continue
                     else:
+                        sock.close()
+                        wsocks.remove(sock)
                         logging.exception('Error in sendall() of %s', sock)
                         continue
                 rsocks.append(sock)
